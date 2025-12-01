@@ -57,8 +57,8 @@ class QuoteService {
 
       // Calculate hash and get quote index
       final hashValue = _calculateQuoteIndex(deviceId, date);
-      // Use modulo 50 since we have 50 quotes
-      final index = hashValue % 50;
+      // Use modulo 100 since we have 100 quotes
+      final index = hashValue % 100;
 
       // Ensure index is within bounds
       if (index < 0 || index >= quotes.length) {
