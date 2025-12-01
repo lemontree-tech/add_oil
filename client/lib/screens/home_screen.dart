@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/quote.dart';
 import '../widgets/quote_card.dart';
 import '../widgets/blackhole_background.dart';
+import '../widgets/countdown_timer.dart';
 import '../services/quote_service.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -89,6 +90,16 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
                           'No quote available',
                           style: TextStyle(color: Colors.white),
                         ),
+            ),
+          ),
+          // Countdown timer at the bottom
+          SafeArea(
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 24.0),
+                child: const CountdownTimer(),
+              ),
             ),
           ),
         ],
