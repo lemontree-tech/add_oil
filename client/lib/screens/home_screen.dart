@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/quote.dart';
 import '../widgets/quote_card.dart';
 import '../widgets/blackhole_background.dart';
+import '../services/quote_service.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,14 +14,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _fadeAnimation;
-
-  // Hardcoded quote for now
-  final Quote _quote = const Quote(
-    id: 0,
-    text: '天將降大任於斯人也，必先苦其心志，勞其筋骨，餓其體膚，空乏其身，行拂亂其所為，所以動心忍性，曾益其所不能。',
-    source: '孟子·告子下',
-    luckyLevel: 5,
-  );
+  Quote? _quote;
+  bool _isLoading = true;
 
   @override
   void initState() {
@@ -35,7 +30,27 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
         curve: Curves.easeOut,
       ),
     );
-    _animationController.forward();
+    _loadRandomQuote();
+  }
+
+  Future<void> _loadRandomQuote() async {
+    try {
+      final quote = await QuoteService.getRandomQuote();
+      setState(() {
+        _quote = quote;
+        _isLoading = false;
+      });
+      _animationController.forward();
+    } catch (e) {
+      setState(() {
+        _isLoading = false;
+      });
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Failed to load quote: $e')),
+        );
+      }
+    }
   }
 
   @override
@@ -51,21 +66,24 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
         children: [
           // Blackhole background
           const BlackholeBackground(),
-          // Content
-          SafeArea(
+          // Content - centered to match blackhole
+          Align(
+            alignment: Alignment.center,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
-              child: FadeTransition(
-                opacity: _fadeAnimation,
-                child: Column(
-                  children: [
-                    const Spacer(flex: 4),
-                    // Quote Card
-                    QuoteCard(quote: _quote),
-                    const Spacer(flex: 5),
-                  ],
-                ),
-              ),
+              child: _isLoading
+                  ? const CircularProgressIndicator(
+                      color: Colors.white,
+                    )
+                  : _quote != null
+                      ? FadeTransition(
+                          opacity: _fadeAnimation,
+                          child: QuoteCard(quote: _quote!),
+                        )
+                      : const Text(
+                          'No quote available',
+                          style: TextStyle(color: Colors.white),
+                        ),
             ),
           ),
         ],

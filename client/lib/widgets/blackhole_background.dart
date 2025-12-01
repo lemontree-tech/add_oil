@@ -59,7 +59,7 @@ class BlackholePainter extends CustomPainter {
     }
     
     // Blackhole effect - multiple radial gradients for light bending
-    final blackholeRadius = size.width * 0.4;
+    final blackholeRadius = size.width * 0.55;
     
     // Outer light ring (accretion disk)
     final outerRing = Paint()

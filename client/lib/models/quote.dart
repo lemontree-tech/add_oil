@@ -10,4 +10,13 @@ class Quote {
     required this.source,
     required this.luckyLevel,
   });
+
+  factory Quote.fromJson(Map<String, dynamic> json) {
+    return Quote(
+      id: json['id'] as int,
+      text: json['text'] as String,
+      source: json['source'] as String,
+      luckyLevel: json['luckyLevel'] as int,
+    );
+  }
 }

@@ -12,7 +12,7 @@ class QuoteCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
+      constraints: const BoxConstraints(maxWidth: 600),
       padding: const EdgeInsets.symmetric(
         horizontal: 32.0,
         vertical: 40.0,
@@ -46,6 +46,7 @@ class QuoteCard extends StatelessWidget {
         ],
       ),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
