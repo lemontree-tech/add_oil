@@ -35,7 +35,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
 
   Future<void> _loadRandomQuote() async {
     try {
-      final quote = await QuoteService.getRandomQuote();
+      final quote = await QuoteService.getTodaysQuote();
       setState(() {
         _quote = quote;
         _isLoading = false;
@@ -47,9 +47,14 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
       });
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to load quote: $e')),
+          SnackBar(
+            content: Text('Failed to load quote: $e'),
+            duration: const Duration(seconds: 5),
+          ),
         );
       }
+      // Print error for debugging
+      print('Error loading quote: $e');
     }
   }
 
