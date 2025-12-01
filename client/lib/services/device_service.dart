@@ -1,61 +1,40 @@
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'dart:io';
 
 class DeviceService {
-  static const _deviceIdKey = 'device_id';
-
-  /// Get or create a unique device ID
+  /// Get a unique device ID that persists across app uninstalls
+  /// Uses Android ID (persists across uninstalls) or iOS identifierForVendor
   static Future<String> getDeviceId() async {
     try {
-      final prefs = await SharedPreferences.getInstance();
-      
-      // Try to get existing device ID
-      final existingId = prefs.getString(_deviceIdKey);
-      if (existingId != null && existingId.isNotEmpty) {
-        return existingId;
-      }
-
-      // Generate new device ID based on device info
       final deviceInfo = DeviceInfoPlugin();
-      String deviceSignature;
+      String deviceId;
 
       if (Platform.isAndroid) {
         final androidInfo = await deviceInfo.androidInfo;
-        deviceSignature = '${androidInfo.id}-${androidInfo.model}-${androidInfo.brand}';
+        // Android ID persists across uninstalls (unless factory reset)
+        // It's a 64-bit number, convert to string
+        deviceId = androidInfo.id;
       } else if (Platform.isIOS) {
         final iosInfo = await deviceInfo.iosInfo;
-        deviceSignature = '${iosInfo.identifierForVendor ?? 'unknown'}-${iosInfo.model}';
+        // identifierForVendor persists across uninstalls of this app
+        // (until all apps from vendor are uninstalled)
+        deviceId = iosInfo.identifierForVendor ?? 'ios-unknown';
       } else {
-        // Fallback for other platforms
-        deviceSignature = DateTime.now().millisecondsSinceEpoch.toString();
+        // Fallback for other platforms - use a combination that's stable
+        // Note: This won't persist across uninstalls on desktop/web
+        deviceId = 'fallback-${DateTime.now().millisecondsSinceEpoch}';
       }
 
-      // Generate UUID-like string from device signature
-      final deviceId = _generateIdFromSignature(deviceSignature);
-
-      // Store it
-      await prefs.setString(_deviceIdKey, deviceId);
+      // Ensure we have a valid ID
+      if (deviceId.isEmpty || deviceId == 'unknown') {
+        throw Exception('Unable to get device ID');
+      }
 
       return deviceId;
     } catch (e) {
-      // Fallback if anything fails - generate a simple ID
-      final prefs = await SharedPreferences.getInstance();
-      final fallbackId = DateTime.now().millisecondsSinceEpoch.toString();
-      await prefs.setString(_deviceIdKey, fallbackId);
-      return fallbackId;
+      // Last resort fallback - but this won't persist across uninstalls
+      throw Exception('Failed to get device ID: $e');
     }
-  }
-
-  /// Generate a stable ID from device signature
-  static String _generateIdFromSignature(String signature) {
-    // Simple hash-like function to create a stable ID
-    int hash = 0;
-    for (int i = 0; i < signature.length; i++) {
-      hash = ((hash << 5) - hash) + signature.codeUnitAt(i);
-      hash = hash & hash; // Convert to 32-bit integer
-    }
-    return hash.abs().toString();
   }
 }
 
