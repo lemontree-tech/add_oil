@@ -2,7 +2,7 @@
 
 ## Overview
 
-A Flutter app that displays a daily Chinese quote based on device signature + date. Works offline-first with optional server sync.
+A Flutter app that displays a daily Chinese quote based on device signature + date. Works fully offline with quotes bundled in the app.
 
 ## Core Concept
 
@@ -65,8 +65,9 @@ quotes[index]
 - `cached_quote` - Today's quote
 - `cached_date` - Today's date string
 
-## Future Components (Not Built Yet)
+## Notes
 
-- `SyncService` - Server sync for updates
-- `AnalyticsService` - Usage tracking
+- App works fully offline
+- All quotes are bundled in assets
+- No network connectivity required
 
