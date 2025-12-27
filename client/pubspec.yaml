@@ -1,4 +1,4 @@
-name: gods_word_for_the_day
+name: add_oil
 description: "每日智慧 - 基於設備和日期的中文古典文學每日名言應用。每天為您呈現一句精心挑選的古典文學名言。"
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
