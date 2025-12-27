@@ -4,7 +4,8 @@
 
 1. ✅ **Bundle Identifier Updated**: Changed to `com.lt.addoil`
 2. ✅ **App Description Updated**: Updated in `pubspec.yaml`
-3. ✅ **Privacy Policy Template Created**: See `PRIVACY_POLICY.md`
+3. ✅ **Privacy Policy Created**: Hosted at `https://lemontree-tech.github.io/add_oil/PRIVACY.html`
+4. ✅ **GitHub Pages Set Up**: Website live at `https://lemontree-tech.github.io/add_oil/`
 
 ## 📋 Pre-Submission Checklist
 
@@ -22,9 +23,8 @@
    - **User Access**: Full Access (or Limited if using team)
 
 #### App Information
-- **Privacy Policy URL**: [Your hosted privacy policy URL]
-  - ⚠️ **REQUIRED**: You must host `PRIVACY_POLICY.md` on a public website
-  - Example: `https://yourwebsite.com/privacy-policy`
+- **Privacy Policy URL**: `https://lemontree-tech.github.io/add_oil/PRIVACY.html`
+  - ✅ Already hosted and ready
 - **Category**: 
   - Primary: Lifestyle or Books
   - Secondary: (optional)
@@ -36,7 +36,12 @@
 #### Prerequisites
 - [ ] Xcode installed (latest version recommended)
 - [ ] Apple Developer account active ($99/year)
-- [ ] Bundle ID `com.lt.addoil` registered in your Apple Developer account
+- [ ] **Bundle ID `com.lt.addoil` registered in Apple Developer portal** ⚠️ **DO THIS FIRST**
+  - Go to: https://developer.apple.com/account/resources/identifiers/list
+  - Click **+** → **App IDs** → **App**
+  - Description: Add Oil (or 加油)
+  - Bundle ID: `com.lt.addoil` (exact match)
+  - Click **Continue** → **Register**
 - [ ] Provisioning profiles set up (Xcode can do this automatically)
 
 #### Build Steps
@@ -112,6 +117,11 @@ You need screenshots for these device sizes:
 - Show app in action
 - Can be same video for all sizes
 
+#### Promotional Text (170 characters max)
+```
+每天一句勵志名言，為您的生活注入正能量與動力。古典文學的智慧，成為您每天前進的力量。
+```
+
 #### App Description
 
 **Short Description** (up to 170 characters):
@@ -121,33 +131,46 @@ You need screenshots for these device sizes:
 
 **Long Description** (up to 4000 characters):
 ```
-每日智慧 (加油) 是一款精美的中文古典文學每日名言應用。
+每日智慧 (加油) 是一款勵志名言應用，每天為您帶來正能量與動力。
 
 ✨ 主要特色：
-• 每天為您呈現一句精心挑選的古典文學名言
-• 基於設備和日期的智能選擇系統，確保每天都有獨特的體驗
+• 每天一句精心挑選的勵志名言，為您的生活注入正能量
+• 基於古典文學的智慧結晶，結合現代勵志理念
 • 精美的用戶界面，專注於內容呈現
-• 離線工作，無需網絡連接
-• 倒計時顯示，提醒您明天的名言
+• 完全離線工作，無需網絡連接
+• 倒計時顯示，提醒您明天的勵志名言
+• 個人化體驗，每台設備在同一天會看到相同的名言，但不同設備會看到不同的內容
+
+💪 勵志力量：
+每天一句正能量的名言，幫助您保持積極心態，面對生活中的挑戰。無論是工作壓力、學習困難，還是人生迷茫，這些來自古典文學的智慧都能為您提供指引與動力。
 
 📚 內容來源：
-應用包含365句精心挑選的中國古典文學名言，涵蓋詩詞、古文、經典語錄等。
+應用包含精心挑選的中國古典文學勵志名言，涵蓋詩詞、古文、經典語錄等，每句都蘊含深刻的人生智慧，激勵您不斷前進。
 
 🎯 使用方式：
-打開應用，即可看到今天的名言。每台設備在同一天會看到相同的名言，但不同設備會看到不同的內容，為您帶來獨特的個人化體驗。
+打開應用，即可看到今天的勵志名言。無需註冊，無需登錄，打開即用。讓這些充滿正能量的話語陪伴您的每一天，成為您前進的動力。
 
-無需註冊，無需登錄，打開即用。讓古典文學的智慧陪伴您的每一天。
+💡 設計理念：
+我們相信，每天接觸一句勵志名言，不僅能激發您的內在動力，更能為日常生活帶來正能量與啟發。無論是早晨醒來的第一句話，還是睡前的最後一句話，都能為您的一天注入力量。
+
+🌟 為什麼選擇我們：
+- 精選內容：每句勵志名言都經過精心挑選，確保能為您帶來正能量
+- 簡潔設計：專注於內容本身，無廣告干擾，讓您專注於吸收正能量
+- 離線使用：無需網絡，隨時隨地都能獲得勵志力量
+- 個人化：基於設備的智能選擇，為您帶來獨特體驗
+- 完全免費：無內購，無廣告，純粹的正能量體驗
+
+讓這些充滿智慧的勵志名言，成為您每天前進的動力來源。
 ```
 
 #### Keywords (100 characters max)
 ```
-古典文學,名言,每日,智慧,中文,詩詞,古文,勵志,傳統文化
+勵志,正能量,名言,每日,動力,激勵,中文,勵志語錄,每日一句,正能量語錄,勵志名言,激勵,加油
 ```
 
 #### Support URL
 - Required: A website URL where users can get support
-- Can be a simple landing page or GitHub page
-- Example: `https://yourwebsite.com/support`
+- Use: `https://lemontree-tech.github.io/add_oil/` (your GitHub Pages site)
 
 #### Marketing URL (Optional)
 - Optional: A website for marketing the app
@@ -250,14 +273,55 @@ For future updates:
 
 ---
 
-**Next Steps**:
-1. ✅ Bundle ID updated
-2. ⏳ Host privacy policy online
-3. ⏳ Register bundle ID in Apple Developer portal
-4. ⏳ Build and archive app
-5. ⏳ Create App Store Connect listing
-6. ⏳ Upload screenshots
-7. ⏳ Submit for review
+## 🎯 Next Steps (Priority Order)
 
-**Estimated Time**: 2-4 hours for setup + 24-48 hours for review
+### Step 1: Register Bundle ID (5 min) ⚠️ **DO THIS FIRST**
+1. Go to: https://developer.apple.com/account/resources/identifiers/list
+2. Click **+** → **App IDs** → **App** → Continue
+3. Fill in:
+   - **Description**: Add Oil (or 加油)
+   - **Bundle ID**: `com.lt.addoil` (must match exactly)
+4. Click **Continue** → **Register**
+
+### Step 2: Generate Icons & Build (15 min)
+```bash
+cd client
+flutter pub run flutter_launcher_icons
+flutter clean
+flutter pub get
+flutter build ios --release
+```
+
+### Step 3: Archive in Xcode (10 min)
+```bash
+cd client
+open ios/Runner.xcworkspace
+```
+- Select **Runner** → **Signing & Capabilities**
+- Check **Automatically manage signing**
+- Select your **Team**
+- Verify Bundle ID: `com.lt.addoil`
+- **Product** → **Archive**
+- **Distribute App** → **App Store Connect** → **Upload**
+
+### Step 4: Create App Store Connect Listing (10 min)
+1. Go to: https://appstoreconnect.apple.com
+2. **My Apps** → **+** → **New App**
+3. Fill in:
+   - **Name**: 加油
+   - **Bundle ID**: `com.lt.addoil`
+   - **SKU**: `addoil-ios-001`
+   - **Privacy Policy URL**: `https://lemontree-tech.github.io/add_oil/PRIVACY.html`
+   - **Category**: Lifestyle (or Books)
+
+### Step 5: Upload Screenshots (10 min)
+- Take screenshots from iOS Simulator (Cmd+S)
+- Upload to App Store Connect for required sizes
+
+### Step 6: Submit for Review (5 min)
+- Fill in app descriptions
+- Answer export compliance
+- Click **Submit for Review**
+
+**Total Estimated Time**: ~1.5 hours setup + 24-48 hours review
 
