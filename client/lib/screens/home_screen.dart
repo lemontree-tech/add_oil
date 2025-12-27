@@ -4,6 +4,7 @@ import '../widgets/quote_card.dart';
 import '../widgets/blackhole_background.dart';
 import '../widgets/countdown_timer.dart';
 import '../services/quote_service.dart';
+import '../services/analytics_service.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -32,6 +33,8 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
       ),
     );
     _loadRandomQuote();
+    AnalyticsService.logAppOpen();
+    AnalyticsService.logScreenView('home_screen');
   }
 
   Future<void> _loadRandomQuote() async {
@@ -42,6 +45,12 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
         _isLoading = false;
       });
       _animationController.forward();
+      // Log analytics
+      AnalyticsService.logQuoteViewed(
+        quoteId: quote.id,
+        source: quote.source,
+        luckyLevel: quote.luckyLevel,
+      );
     } catch (e) {
       setState(() {
         _isLoading = false;

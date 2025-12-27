@@ -1,7 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'screens/home_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  try {
+    await Firebase.initializeApp();
+    // Enable analytics collection
+    await FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(true);
+    if (kDebugMode) {
+      debugPrint('✅ Firebase initialized and analytics enabled');
+    }
+  } catch (e) {
+    // If Firebase fails to initialize, log but don't block app
+    if (kDebugMode) {
+      debugPrint('❌ Firebase initialization error: $e');
+    }
+  }
   runApp(const MyApp());
 }
 
